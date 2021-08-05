@@ -1,15 +1,3 @@
-# class Fixnum
-#     def who_am_i
-#         puts self
-#     end
-# end
-
-# class String
-#     def who_am_i
-#         puts self
-#     end
-# end
-
 class Mammal 
     def initialize
         puts "I am alive"
