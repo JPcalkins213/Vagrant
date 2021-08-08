@@ -1,0 +1,55 @@
+1. rails new folder_name
+2. go to SQLlite in gem file and add , '~> 1.3.13'
+3. add gem "hirb"
+4. cd to project folder and do bundle install
+5. to create a model type rails g model model_name
+5 example. rails g model User name:string email:string age:integer
+once model is set up run command rake db:migrate 
+
+WHILE IN THE RAILS CONSOLE
+quick way to manually create a user is; User.create(fname:"Jane", lname: "Doe", email:"jane@doe.com", password:"password")
+User.first to get the first user in the database
+User.last shows the last person in the database
+User.find(id) show that user
+User.find_by(fname: "Jane") shows the first jane it come across
+User.where(key: 'value') shows all the users with that name
+user.where(key: "value").select(key: "value"...) will only show what you select
+# retrieving all rows in the users table
+users = User.all
+# retrieving the first row in the users table
+user = User.first
+# retrieving the second row in the users table
+user2 = User.second
+# retrieving the last row in the users table
+last_user = User.last
+# retrieving the user with id = 2
+user = User.find(2)
+# retrieving the first user with the first name John
+john = User.find_by(first_name: "John")
+# retrieving all the users with the first name John
+johns = User.where(first_name: "John")
+# retrieving all users with the last name Doe but only selecting the first name and last name column
+does = User.where(last_name: "Doe").select(:first_name, :last_name)
+
+when updateing a user, you must first find the user and then use: User.update(key:"value", key:"value", key:"value")
+
+when doing user.save and you get a rollback transaction, type in the rails console user.errors.full_messages and it will tell you directly what was wrong
+
+to keep code dry while adding validations you can do it all in one line like so 
+validates :fname, :lname, :email, :password, presence: true
+
+when making changes to the model file you must restart the console using "reload!" in the ruby console
+
+Here is a short list of other types of validations:
+
+    :length - validates the length of an attribute's value
+        :minimum, :maximum, :in, :is
+    :numericality - validates whether an attribute is a numeric value
+    :odd, :even, and many others
+    :presence - validates that the specified attributes are not empty
+    :uniqueness - validates whether the value is unique in the corresponding database table. NOTE: always create a unique index in the database too.
+    :confirmation - use this when you have two text fields that should receive exactly the same content; assumes the second field name has "_confirmation" appended
+    validates_associated - use this when your model has associations with other models and they also need to be validated
+    :acceptance - validate whether a checkbox was checked when a form was submitted (usually for 'terms and conditions')
+    also, get familiar with :message and :on
+
