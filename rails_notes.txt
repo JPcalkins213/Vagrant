@@ -53,3 +53,11 @@ Here is a short list of other types of validations:
     :acceptance - validate whether a checkbox was checked when a form was submitted (usually for 'terms and conditions')
     also, get familiar with :message and :on
 
+
+IN RAILS HAS_MANY_PRAC
+
+    #retrieves all the courses that the first student has signed up for
+        Student.first.courses
+
+    #retrieves all the students that have signed up for the second course
+        Course.second.students
