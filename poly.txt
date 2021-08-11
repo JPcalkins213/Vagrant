@@ -1,0 +1,1 @@
+rails g model Comment content:string user:references blog:references post:references
