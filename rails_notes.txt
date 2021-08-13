@@ -85,3 +85,8 @@ pics1 = Employee.first.pictures
 pics2 = Employee.second.pictures
 pics3 = Product.first.pictures
 pics4 = Product.second.pictures
+
+
+TO START THE WEB SERVER IN RAILS
+
+    after gem file is setup and installed type 'rails s -b 0.0.0.0'
