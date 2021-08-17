@@ -1,0 +1,7 @@
+<form action="/users/<%=@user.id%>" method="POST">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <input type="hidden" name="_method" value="patch">
+    <input type="text" name="user[fname]" placeholder="<%=@user.fname%>">
+    <input type="text" name="user[lname]" placeholder="<%=@user.lname%>">
+    <input type="submit">
+</form>

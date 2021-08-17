@@ -1,0 +1,7 @@
+<h1>index page is working</h1>
+
+<ul> 
+    <% @users.each do |user| %>
+    <li><%= user.fname %> | <%= user.lname %></li>
+    <% end %>
+</ul>

@@ -1,0 +1,70 @@
+INSTRUCTIONS ON HOW TO GET STARTED WITH CONTROLLERS
+
+to start the server put 'rails s -b 0.0.0.0'
+
+to find out what routes you have available to you type in the vagrant console 'rake routes'
+
+to make a controller model in the vagrnat console put 'rails g controller controllerName' the controller name must be capital and plural. While when you create a model it is capital and singular (please dont forget the model!!!!!!!)
+
+check RESTful.jpg to see the different type of RESTful routes
+
+when creating routes you must add   get 'users' => 'users#index' and add a corresponding controller in the controllerName_controller.rb like so 
+
+BUT TO MAKE THIS EVEN EASIER in your routes you can put 'resources: controllerName' and this will give us all the routes we need without having to manually input each route we want
+
+def index
+
+    #nothing has to go in here if you have nothing to put in here
+
+end
+
+when adding a template you add it in the views/controllerName folder
+
+to grab everything from the database in the controller file inside the function you will put '@products = Product.all'. 'products' is the variable your assigning all the db information to and 'Product.all' is grabbing everything from the database. if you notice, 'Product.all' is what i would type in the ruby console to have ruby show me all of my users
+
+When wanting to create somehting on your webpage set up the form like normal. Then in the controller file inside a create function you make put the following
+
+def create
+
+        User.create(fname:params[:user][:fname] , lname: params[:user][:lname])
+        redirect_to '/products'
+    end
+
+    params is required to be there [:fname] and [lname] are specifically refering to what you put as the 'name' of each input in your form
+
+    TO MAKE THIS MORE "AWESOMELY"
+
+    make this function
+
+    private
+        def user_params
+            params.require(:user).permit(:fname, :lname)
+        end
+
+    adding that private function allows us to change our craete function form this...
+
+    def create
+
+        User.create(fname:params[:user][:fname] , lname: params[:user][:lname])
+        redirect_to '/products'
+    end
+
+    to this...
+
+    def create 
+        User.create(user_params)
+        redirect_to '/user'
+
+
+the csrf token you need to put inside your form to avoid a invalid token error
+<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+
+to show a specific item on the show page
+once you create that show.html.erb you want to put something that looks similar to this (variable may vary)
+<h1><%= @user.fname%> <%= @user.lname %></h1>
+
+after that make sure you have this function inside your controller 
+
+    def show 
+        @user = User.find(params[:id])
+    end
